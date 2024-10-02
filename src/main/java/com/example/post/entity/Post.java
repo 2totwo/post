@@ -18,12 +18,12 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
+    private String title; // 256자
 
     @Column(columnDefinition = "TEXT")
     private String body;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt; // 게시물 작성 날짜
     private LocalDateTime updatedAt;
 
 }

@@ -33,14 +33,14 @@ public class HomeController {
 
         // 페이징 처리된 게시물 가져오기
         Page<Post> postsOnPage = postService.findAll(page - 1, per_page, sort_by);
-        int totalPages = postsOnPage.getTotalPages();
+        int totalPages = postsOnPage.getTotalPages(); // 자동계산
 
         // 페이지 번호 리스트 생성 [1, 2, 3, ...]
         List<Integer> pages = new ArrayList<>();
         if (totalPages > 0) {
             pages = IntStream
-                    .rangeClosed(0, totalPages - 1)
-                    .boxed()
+                    .rangeClosed(0, totalPages - 1) // 0, 1, 2, 3,... int형
+                    .boxed() // int형 -> boxed -> Integer
                     .collect(Collectors.toList());
         }
 
@@ -56,6 +56,11 @@ public class HomeController {
         }
         // 모델에 게시물과 페이지 링크 전달
         model.addAttribute("posts", postsOnPage);
+
         return "home_views/list";
+    }
+    @GetMapping("/books")
+    public String books(){
+        return "home_views/books"; // books.html(검색 --> Kakao Book API)
     }
 }
