@@ -12,7 +12,7 @@ public class KakaoRestController {
 
     private final String apiKey="764bdfe574bc374c0644a63fbc649a0f";
     @GetMapping("/books")
-    public ResponseEntity<String> books(String title){
+    public ResponseEntity<?> books(String title){ // return type 모르면 그냥 <?>
         // System.out.println(title);
         final String url="https://dapi.kakao.com/v3/search/book?query="+title;
         HttpHeaders headers = new HttpHeaders();
